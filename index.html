@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>QR Code Generator</title>
+</head>
+<body>
+    
+    <div class="qrbox">
+        <h3 style="font-size: small; padding: 0.5rem 4.3rem;">Made with &hearts; by afficodes</h3>
+        <img src="img.png" alt="qr-code"/>
+        <a href="" download=""></a>
+        <textarea placeholder="Enter Your Text..."></textarea>
+        <button>Generate QR Code</button>
+    </div>
+</body>
+    <script>
+        let qrcode = select("img");
+        let qrtext = select("textarea");
+        let generateBtn = select("button");
+        let downloadBtn = select("a");
+
+        generateBtn.addEventListener("click", generateQR);
+
+        function generateQR() {
+            let size = "1000x1000";
+            let data = qrtext.value;
+            let baseURL = "http://api.qrserver.com/v1/create-qr-code/";
+
+            let url = `${baseURL}?data=${data}&size=${size}`;
+
+            qrcode.src = url;
+            downloadBtn.href = url;
+            qrtext.value = "";
+        }
+
+        function select(el) {
+            return document.querySelector(el);
+        }
+
+    </script>
+</html>
